@@ -9,8 +9,11 @@ Run mongo db server
 Install project dependencies
 > npm install
 
-Build project
+Then build and start the project
 > npm build
-
-Run project
 > npm start
+
+
+
+To see the project running on production, go to this link:
+http://mazzoni-developer-shop.herokuapp.com/
