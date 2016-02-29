@@ -1,5 +1,5 @@
 module.exports = {
-  database: process.env.MONGO_URI || 'localhost/developer-shop',
+  database: process.env.MONGOLAB_URI. || 'localhost/developer-shop',
 
   host: 'http://mazzoni-developer-shop.herokuapp.com',
 
