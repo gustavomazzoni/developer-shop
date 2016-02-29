@@ -25,6 +25,23 @@ Priorize a lista de tarefas abaixo explicando os motivos da priorização de cad
 * 8) Permitir a adição de um cupom de desconto que altera o preço total da compra. Utilize o código "SHIPIT".
     - Tarefa do fluxo secundário, onde será utilizado somente quando o usuário possuir cupom de desconto.
 
+## Solução
+Para a solução, foi criado uma single page application no "client side" chamando o "server side" através de API REST por Ajax.
+
+Módulo utilizados no client side:
+* React
+* React-DOM
+* Babel
+* Webpack
+
+Módulo utilizados no server side:
+* NodeJS
+* ExpressJS
+* MongoDB
+* Mongoose
+
+## Server Side
+
 
 ## Install
 Install MongoDB
@@ -49,5 +66,5 @@ Open on your browser:
 http://localhost:8080/
 
 ## Demo
-To see the project running on production, go to this link:
+To see the project running on production (Heroku and MongoDB Labs), go to this link:
 http://mazzoni-developer-shop.herokuapp.com/
