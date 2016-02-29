@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Coding Challenge VTEX",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm run build && node server.js",
     "build": "webpack --progress --colors"
   },
   "author": "Gustavo Mazzoni",
