@@ -48,6 +48,10 @@ Módulo utilizados no server side:
 * MongoDB
 * Mongoose
 
+## Próximas versões
+Criação de Testes automatizados.
+Criação de configuração para recarregar lista de membros do GitHub em determinada frequência e atualizar no banco de dados da aplicação.
+
 ## Executando a aplicação localmente
 ### Install
 Install MongoDB
