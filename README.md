@@ -1,19 +1,27 @@
 # Developer Shop
 
+## Install
 Install MongoDB
-> brew install mongodb
-
+```sh
+$ brew install mongodb
+```
 Run mongo db server
-> mongod
-
+```sh
+$ mongod
+```
 Install project dependencies
-> npm install
-
+```sh
+$ npm install
+```
 Then build and start the project
-> npm build
-> npm start
+```sh
+$ npm build
+$ npm start
+```
 
+Open on your browser:
+http://localhost:8080/
 
-
+## Demo
 To see the project running on production, go to this link:
 http://mazzoni-developer-shop.herokuapp.com/
