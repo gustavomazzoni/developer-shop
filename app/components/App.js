@@ -1,5 +1,5 @@
 var React = require('react');
-var config = require('./config');
+var config = require('../../config');
 
 var DeveloperList = require('./DeveloperList');
 var Cart = require('./Cart');
