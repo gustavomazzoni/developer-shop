@@ -19876,7 +19876,7 @@
 	module.exports = {
 	  database: process.env.MONGOLAB_URI || 'localhost/developer-shop',
 
-	  host: 'http://mazzoni-developer-shop.herokuapp.com',
+	  host: 'http://localhost:8080', //'http://mazzoni-developer-shop.herokuapp.com',
 
 	  // Using mikedeboer GitHub API for NodeJS (https://github.com/mikedeboer/node-github)
 	  github: {
@@ -20261,11 +20261,12 @@
 				),
 				React.createElement(
 					'div',
-					{ className: 'col-md-2 text-center' },
-					React.createElement('input', { type: 'text', placeholder: 'How many?',
+					{ className: 'col-md-2 text-right' },
+					React.createElement('input', { type: 'number', qtd: '1', min: '1', max: '200', size: '3', placeholder: 'How many hours?',
 						value: this.props.developer.quantity,
 						onChange: this.handleChange,
-						className: 'form-control' })
+						className: 'modern' }),
+					'hours'
 				),
 				React.createElement(
 					'div',

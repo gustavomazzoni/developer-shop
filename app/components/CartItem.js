@@ -43,11 +43,12 @@ var CartItem = React.createClass({
 						</div>
 					</div>
 				</div>
-				<div className="col-md-2 text-center">
-					<input type="number" qtd="1" min="1" max="99" placeholder="How many hours?" 
+				<div className="col-md-2 text-right">
+					<input type="number" qtd="1" min="1" max="200" size="3" placeholder="How many hours?" 
 					value={this.props.developer.quantity} 
 					onChange={this.handleChange}
-					className="form-control"/>
+					className="modern"/>
+					hours
 				</div>
 				<div className="col-md-2 text-center">
 					<p>${this.props.developer.price} /per hour</p>

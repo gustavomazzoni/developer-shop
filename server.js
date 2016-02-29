@@ -17,13 +17,13 @@ mongoose.connect(config.database, function(err) {
 });
 
 // Put database on initial config
-Developer.remove({}, function(err) { 
-   console.log('Developer database empty') 
-});
+// Developer.remove({}, function(err) { 
+//    console.log('Developer database empty') 
+// });
 
 // Create an instance of GitHubApi then pass it to githubHandler
-var github = new GitHubApi(config.github);
-githubHandler(github, config.github.org);
+// var github = new GitHubApi(config.github);
+// githubHandler(github, config.github.org);
 
 // Create an express instance and set a port variable
 var app = express();
