@@ -32,6 +32,10 @@ Ao iniciar o server side application, é carregada a lista de desenvolvedores a 
 
 No client side, ao carregar os componentes React é feita uma única chamada ao server para carregar a lista de desenvolvedores e popular os componentes da view. A partir deste momento, a maior parte das interações na tela são feitas no client side sem comunicação com o server (adicionar e remover desenvolvedor do carrinho, escolher quantidade de horas a ser contratada para cada desenvolvedor). Sendo assim, o estado do carrinho é guardado no client side, mais especificamente no local storage (browser do usuário).
 
+Esta solução foi adotada, pois a lista de membros de uma organização do github é alterada com baixa frequência, da mesma forma as informações do perfil de cada membro. Portanto, seria desnecessário uma solução mais pesada com comunicações frequêntes ao GitHub para carregar tais informações e processar o cálculo para determinar o preço de cada desenvolvedor.
+
+Foi optado por manter o estado do carrinho de compras no client side, pois o usuário não está logado no sistema sendo inviável guardar o carrinho do usuário para acessos em diferentes browsers. Desta forma, é mantido do lado do cliente novamente desonerando o servidor e fazendo com que a interação seja mais rápida.
+
 Módulo utilizados no client side:
 * React
 * React-DOM
@@ -44,10 +48,8 @@ Módulo utilizados no server side:
 * MongoDB
 * Mongoose
 
-## Server Side
-Para resolver os requisitos 1 e 2
-
-## Install
+## Executando a aplicação localmente
+### Install
 Install MongoDB
 ```sh
 $ brew install mongodb
@@ -60,6 +62,7 @@ Install project dependencies
 ```sh
 $ npm install
 ```
+### Run
 Then build and start the project
 ```sh
 $ npm build
