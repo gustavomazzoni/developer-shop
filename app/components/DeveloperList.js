@@ -19,12 +19,16 @@ var DeveloperList = React.createClass({
 		}
 
 		return (
-			<div className="row">
-				<div className="col-lg-12">
-					<h2 className="page-header">Developer List</h2>
+			<section id="developers">
+				<div className="container">
+					<div className="row">
+						<div>
+							<h2 className="page-header">Developers</h2>
+						</div>
+						{developers}
+					</div>
 				</div>
-				{developers}
-			</div>
+			</section>
    		)
 
 	}

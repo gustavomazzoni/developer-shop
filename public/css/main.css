@@ -4,19 +4,100 @@
    Author's custom styles
    ========================================================================== */
 
+section {
+	padding: 50px 0 50px 0;
+}
 
+.separator {
+    line-height: 0.5;
+    text-align: center;
+    margin: 30px 0 30px 0;
+}
 
+.spacer-single {
+    width: 100%;
+    height: 30px;
+    display: block;
+    clear: both;
+}
 
+.avatar {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1;
+    vertical-align: middle;
+    border-radius: 3px;
+}
 
+#developers .panel-heading {
+	min-height: 100px;
+}
 
+#developers .panel-heading img {
+	float: left;
+}
 
+#developers .dev-info {
+    padding-left: 10px;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
+}
 
+#developers .dev-info .heading {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
 
+.dev-panel .price {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1;
+    color: #337ab7;
+}
 
+#developers .dev-stats {
+	padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    display: flex;
+}
 
+.dev-stat {
+    float: left;
+    width: 25%;
+    font-size: 11px;
+    text-transform: capitalize;
+}
 
+.dev-stat-count {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+    display: block !important;
+}
 
+#cart {
+    background: #F5F3EA;
+    width: 101%;
+    background-size: 100% !important;
+}
 
+.cart-list-item {
+	padding-top: 10px;
+    padding-bottom: 10px;
+    vertical-align: middle;
+    border-top: 1px solid #fff;
+}
+
+.glyphicon.glyphicon-remove-sign {
+    font-size: 25px;
+    color: red;
+    cursor: pointer;
+}
+span.glyphicon.glyphicon-remove-sign:hover {
+	color: brown;
+    opacity: 0.8;
+}
 
 
 

@@ -7,22 +7,43 @@ var Cart = React.createClass({
 
 		var self = this;
 
-		var developers = this.props.developers.map(function(d) {
+		var items = this.props.developers.map(function(d) {
 
 			// Passing the onClick callback of this Cart to each CartItem.
-
-			return <CartItem developer={d.developer} onClick={self.props.onClick} />
+			return <CartItem developer={d.developer} 
+						onClick={self.props.onClick} 
+						onChange={self.props.onChange} />
 		});
 
-		if(!developers.length){
+		if(!items.length){
 			return null;
 		}
 
-		return (			
-			<div className="list-group col-xs-12 col-md-6 col-md-offset-3">
-				<span className="list-group-item active">Cart</span>
-				{developers}
-			</div>
+		return (
+			<section id="cart">
+				<div className="container">
+					<div className="row">
+						<div className="col-md-6 col-md-offset-3 text-center wow fadeInUp animated">
+			                <h1>Cart</h1>
+			                <div className="separator"><span><i className="fa fa-circle"></i></span></div>
+			                <div className="spacer-single"></div>
+			            </div>
+						{items}
+						<div className="col-md-12 cart-list-item">
+							<div className="col-md-6">
+							</div>
+							<div className="col-md-2 text-center">
+							</div>
+							<div className="col-md-2 text-center">
+								<p><strong>total:</strong></p>
+							</div>
+							<div className="col-md-2">
+								<p><strong>${this.props.total}</strong></p>
+							</div>
+			          	</div>
+					</div>
+				</div>
+			</section>
    		)
 
 	}

@@ -1,6 +1,5 @@
 var React = require('react');
 
-// var Search = require('./Search');
 var DeveloperList = require('./DeveloperList');
 var Cart = require('./Cart');
 
@@ -8,46 +7,60 @@ var Cart = require('./Cart');
 var App = React.createClass({
 
 	getInitialState: function(){
+		var cartItems = [];
 
-		// Extract the developers from local storage
-
-		var developers = [];
-		var cart = [];
-
-		developers.push({
-			developer: {
-				username: "brenoc",
-				price: "$240"
-			}
-		});
-		developers.push({
-			developer: {
-				username: "firstdoit",
-				price: "$410"
-			}
-		});
-		
-		if(localStorage.developers){
-			developers = JSON.parse(localStorage.developers);
-		}
-
-		if(localStorage.cart){
-			cart = JSON.parse(localStorage.cart);
+		// Extract cartItems from local storage
+		if(localStorage.cartItems){
+			cartItems = JSON.parse(localStorage.cartItems);
 		}
 
 		return {
-			developers: developers,
-			cart: cart
+			developers: [],
+			cartItems: cartItems,
+			cartCount: 0,
+			cartTotal: 0
 		};
 	},
 
-	toggleDeveloper: function(developer){
+	// Load developers from server
+	componentDidMount: function() {
+		var self = this;
+		this.serverRequest = $.get("http://localhost:8080/developers", function (result) {
+			var developers = [];
+			result.forEach(function(data){
+				var developer = {
+					id: data.id,
+					username: data.username,
+					name: data.name,
+					company: data.company,
+					photo: data.photo_url,
+					price: data.price,
+					followers_count: data.followers_count,
+			        repos_count: data.repos_count,
+			        forks_count: data.forks_count,
+			        stargazers_count: data.stargazers_count
+				};
+				
+				// Check if it's already in cart
+				var index = self.isDeveloperInCart(developer);
+				if(index === -1) self.addToDevelopers(developer);
+			});
+	    }.bind(this));
+	},
 
-		if(this.isDeveloperInCart(developer)){
-			this.removeFromCart(developer);
+  	// Set to inital state
+	componentWillUnmount: function() {
+		this.serverRequest.abort();
+		this.setState(this.getInitialState());
+	},
+
+	toggleDeveloper: function(developer){
+		var index = this.isDeveloperInCart(developer);
+		
+		if(index !== -1) {
+			this.removeFromCart(index);
 			this.addToDevelopers(developer);
-		}
-		else{
+		} else {
 			this.removeFromDevelopers(developer);
 			this.addToCart(developer);
 		}
@@ -55,7 +68,6 @@ var App = React.createClass({
 	},
 
 	addToDevelopers: function(developer){
-
 		var developers = this.state.developers;
 
 		developers.push({
@@ -65,117 +77,112 @@ var App = React.createClass({
 		this.setState({
 			developers: developers
 		});
-
-		localStorage.developers = JSON.stringify(developers);
 	},
 
 	removeFromDevelopers: function(developer){
-
 		var developers = this.state.developers;
 		var index = -1;
 
-		for(var i = 0; i < developers.length; i++){
-
-			if(developers[i].developer == developer){
+		developers.forEach(function(d, i){
+			var dev = d.developer;
+			if(dev.username == developer.username){
 				index = i;
-				break;
 			}
+		});
 
-		}
 
 		// If it was found, remove it from the developers array
-
 		if(index !== -1){
-			
 			developers.splice(index, 1);
 
 			this.setState({
 				developers: developers
 			});
-
-			localStorage.developers = JSON.stringify(developers);
 		}
-
 	},
 
 	addToCart: function(developer){
 
-		var cart = this.state.cart;
+		var cartItems = this.state.cartItems;
 
-		cart.push({
+		cartItems.push({
 			developer: developer
 		});
 
 		this.setState({
-			cart: cart
+			cartItems: cartItems
 		});
 
-		localStorage.cart = JSON.stringify(cart);
+		// Keep Cart state by saving cartItems in local storage
+		localStorage.cartItems = JSON.stringify(cartItems);
 	},
 
-	removeFromCart: function(developer){
+	removeFromCart: function(index){
+		var cartItems = this.state.cartItems;
+		if(index !== -1) {
+			cartItems.splice(index, 1);
 
-		var cart = this.state.cart;
-		var index = -1;
-
-		for(var i = 0; i < cart.length; i++){
-
-			if(cart[i].developer == developer){
-				index = i;
-				break;
-			}
-
+			this.updateCartTotal(cartItems);
 		}
-
-		// If it was found, remove it from the cart array
-
-		if(index !== -1){
-			
-			cart.splice(index, 1);
-
-			this.setState({
-				cart: cart
-			});
-
-			localStorage.cart = JSON.stringify(cart);
-		}
-
 	},
 
 	isDeveloperInCart: function(developer){
+		var cartItems = this.state.cartItems;
+		var index = -1;
 
-		var cart = this.state.cart;
-
-		for(var i = 0; i < cart.length; i++){
-
-			if(cart[i].developer == developer){
-				return true;
+		cartItems.forEach(function(d, i){
+			var dev = d.developer;
+			if(dev.username == developer.username){
+				index = i;
 			}
-
-		}
-
-		return false;
+		});
+		
+		return index;
 	},
 
-	search: function(text){
-		
-		var self = this;
+	updateCartTotal: function(cartItems) {
+		var total = 0;
+		cartItems.forEach(function(d){
+			var dev = d.developer;
+			total += Number(dev.price) * Number(dev.quantity);
+		});
+		this.setState({
+			cartTotal: total,
+			cartItems: cartItems
+		});
+		localStorage.cartItems = JSON.stringify(cartItems);
+	},
 
+	onChange: function(developer) {
+		var cartItems = this.state.cartItems;
+		cartItems.forEach(function(d){
+			var dev = d.developer;
+			if (dev.username == developer.username) {
+				dev.quantity = developer.quantity;
+			}
+		});
+
+		this.updateCartTotal(cartItems);
 	},
 
 	render: function(){
 		
 		return (
 			<div>
-				<div className="row">
-					<h1>Dev Shop</h1>
-				</div>
-
-				<DeveloperList developers={this.state.developers} onClick={this.toggleDeveloper} />
-				<br/>
-				<div className="row">
-					<Cart developers={this.state.cart} onClick={this.toggleDeveloper} />
-				</div>
+				<header>
+					<div className="container">
+						<div className="row">
+							<h1>Dev Shop</h1>
+						</div>
+					</div>
+				</header>
+				
+				<DeveloperList developers={this.state.developers} 
+					onClick={this.toggleDeveloper} />
+				
+				<Cart developers={this.state.cartItems} total={this.state.cartTotal}
+					onClick={this.toggleDeveloper}
+					onChange={this.onChange}/>
 			</div>
 		);
 	}
