@@ -26,7 +26,11 @@ Priorize a lista de tarefas abaixo explicando os motivos da priorização de cad
     - Tarefa do fluxo secundário, onde será utilizado somente quando o usuário possuir cupom de desconto.
 
 ## Solução
-Para a solução, foi criado uma single page application no "client side" chamando o "server side" através de API REST por Ajax.
+Para a solução, foi criado uma single page application em [React](https://facebook.github.io/react/) no "client side" chamando o "server side", desenvolvido em [Node](https://nodejs.org/), através de API REST por Ajax e guardando os dados no banco de dados MongoDB.
+
+Ao iniciar o server side application, é carregada a lista de desenvolvedores a partir de membros de uma Organização do GitHub (neste caso a organização Pinterest), determinado o preço de cada desenvolvedor com cálculo baseado em informações do seu perfil (regra adotada: peso 1 para número de repos, peso 2 para número de followers e peso 3 para número de stars e forks recebidos em seus forks) e finalmente é salvo esta lista de desenvolvedores com seus respectivos preços no banco de dados. Desta forma, as chamadas ao GitHub são feitas uma única vez, desonerando a rede e o processamento do server.
+
+No client side, ao carregar os componentes React é feita uma única chamada ao server para carregar a lista de desenvolvedores e popular os componentes da view. A partir deste momento, a maior parte das interações na tela são feitas no client side sem comunicação com o server (adicionar e remover desenvolvedor do carrinho, escolher quantidade de horas a ser contratada para cada desenvolvedor). Sendo assim, o estado do carrinho é guardado no client side, mais especificamente no local storage (browser do usuário).
 
 Módulo utilizados no client side:
 * React
@@ -41,7 +45,7 @@ Módulo utilizados no server side:
 * Mongoose
 
 ## Server Side
-
+Para resolver os requisitos 1 e 2
 
 ## Install
 Install MongoDB
