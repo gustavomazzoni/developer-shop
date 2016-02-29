@@ -3,6 +3,33 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.navbar-fixed-top {
+   background-color: #fff;
+   border-bottom: 1px solid #d9d9d9; 
+}
+   
+
+.navbar-brand {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+}
+
+.main-header {
+    position: relative;
+    padding-top: 90px;
+    padding-bottom: 60px;
+    text-align: left;
+    font-size: 24px;
+    color: #fff;
+    background: rgba(51,150,222,1);
+    margin-bottom: -40px;
+}
+
+.main-header h1 {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1;
+}
 
 section {
 	padding: 50px 0 50px 0;
@@ -77,8 +104,11 @@ section {
 }
 
 #cart {
-    background: #F5F3EA;
-    width: 101%;
+    background: #fafafa;
+    border-top: 2px solid rgba(51,150,222,1);
+    /*background: #F5F3EA;
+    border-top: 2px solid #E22E29;*/
+    width: 100%;
     background-size: 100% !important;
 }
 
@@ -86,11 +116,15 @@ section {
 	padding-top: 10px;
     padding-bottom: 10px;
     vertical-align: middle;
-    border-top: 1px solid #fff;
+    border-top: 1px solid #E3E3E3; /*#fff;*/
 }
 
 .cart-list-item input[type="number"] {
     width: 50px;
+}
+
+#cart .total {
+    font-size: 16px;
 }
 
 input.modern {
@@ -127,4 +161,8 @@ span.glyphicon.glyphicon-remove-sign:hover {
 }
 
 
-
+@media (min-width: 768px) {
+    .main-header {
+        
+    }
+}

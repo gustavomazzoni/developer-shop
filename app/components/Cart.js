@@ -35,10 +35,10 @@ var Cart = React.createClass({
 							<div className="col-md-2 text-center">
 							</div>
 							<div className="col-md-2 text-center">
-								<p><strong>total:</strong></p>
+								<p><strong className="total">total:</strong></p>
 							</div>
 							<div className="col-md-2">
-								<p><strong>${this.props.total}</strong></p>
+								<p><strong className="total">${this.props.total}</strong></p>
 							</div>
 			          	</div>
 					</div>

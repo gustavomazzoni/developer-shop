@@ -170,14 +170,6 @@ var App = React.createClass({
 		
 		return (
 			<div>
-				<header>
-					<div className="container">
-						<div className="row">
-							<h1>Dev Shop</h1>
-						</div>
-					</div>
-				</header>
-				
 				<DeveloperList developers={this.state.developers} 
 					onClick={this.toggleDeveloper} />
 				

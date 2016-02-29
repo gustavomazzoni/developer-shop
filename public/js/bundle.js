@@ -19838,23 +19838,6 @@
 			return React.createElement(
 				'div',
 				null,
-				React.createElement(
-					'header',
-					null,
-					React.createElement(
-						'div',
-						{ className: 'container' },
-						React.createElement(
-							'div',
-							{ className: 'row' },
-							React.createElement(
-								'h1',
-								null,
-								'Dev Shop'
-							)
-						)
-					)
-				),
 				React.createElement(DeveloperList, { developers: this.state.developers,
 					onClick: this.toggleDeveloper }),
 				React.createElement(Cart, { developers: this.state.cartItems, total: this.state.cartTotal,
@@ -20160,7 +20143,7 @@
 									null,
 									React.createElement(
 										'strong',
-										null,
+										{ className: 'total' },
 										'total:'
 									)
 								)
@@ -20173,7 +20156,7 @@
 									null,
 									React.createElement(
 										'strong',
-										null,
+										{ className: 'total' },
 										'$',
 										this.props.total
 									)
