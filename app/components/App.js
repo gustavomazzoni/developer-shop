@@ -1,4 +1,5 @@
 var React = require('react');
+var config = require('./config');
 
 var DeveloperList = require('./DeveloperList');
 var Cart = require('./Cart');
@@ -25,7 +26,7 @@ var App = React.createClass({
 	// Load developers from server
 	componentDidMount: function() {
 		var self = this;
-		this.serverRequest = $.get("http://localhost:8080/developers", function (result) {
+		this.serverRequest = $.get(config.host + "/developers", function (result) {
 			var developers = [];
 			result.forEach(function(data){
 				var developer = {
