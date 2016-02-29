@@ -1,7 +1,7 @@
 module.exports = {
   database: process.env.MONGOLAB_URI || 'localhost/developer-shop',
 
-  host: 'http://mazzoni-developer-shop.herokuapp.com',
+  host: (process.env.NODE_ENV == 'production') ? 'http://mazzoni-developer-shop.herokuapp.com' : 'http://localhost:8080',
 
   // Using mikedeboer GitHub API for NodeJS (https://github.com/mikedeboer/node-github)
   github: {

@@ -52,14 +52,14 @@ var CartItem = React.createClass({
 				<div className="col-md-2 text-center">
 					<p>${this.props.developer.price} /per hour</p>
 				</div>
-				<div className="col-md-2 text-center">
+				<div className="col-md-2">
 					<div className="media">
 						<div className="pull-right">
 							<span className="glyphicon glyphicon-remove-sign" 
 							onClick={this.handleClick} aria-hidden="true"></span>
 		                </div>
 						<div className="media-body">
-							<p>${this.state.total}</p>
+							<p>${(this.props.developer.price * this.props.developer.quantity)}</p>
 						</div>
 					</div>
 				</div>
