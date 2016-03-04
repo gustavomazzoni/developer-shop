@@ -50,6 +50,7 @@ Módulo utilizados no server side:
 
 ## Próximas versões
 * Criação de Testes automatizados.
+* Mover lógicas de negócio dos componentes React utilizando arquitetura [Flux](https://facebook.github.io/flux/docs/overview.html)
 * Criação de configuração para recarregar lista de membros do GitHub em determinada frequência e atualizar no banco de dados da aplicação.
 
 ## Executando a aplicação localmente
