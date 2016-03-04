@@ -1,10 +1,8 @@
 var React = require('react');
-var CartItem = require('./CartItem');
 
 var CartItem = React.createClass({
 
 	getInitialState: function() {
-		this.props.developer.quantity = 1;
 		return {
 			total: this.props.developer.price
 		};
@@ -16,18 +14,15 @@ var CartItem = React.createClass({
 
 	handleChange: function(event) {
 		this.props.developer.quantity = Number(event.target.value);
-		this.setState({
-			total: this.props.developer.price * Number(event.target.value)
-		});
 		this.props.onChange(this.props.developer);
 	},
 
 	handleClick: function(){
-		this.props.onClick(this.props.developer);
+		this.props.onRemove(this.props.developer);
 	},
 
 	render: function(){
-
+		var developer = this.props.developer;
 		return (
 			<div className="col-md-12 cart-list-item">
 				<div className="col-md-6">
@@ -35,23 +30,23 @@ var CartItem = React.createClass({
 						<div className="pull-left">
 							<img className="avatar" 
 							width="50px" 
-							src={this.props.developer.photo}/>
+							src={developer.photo_url}/>
 		                </div>
 						<div className="media-body">
-							<h4 className="media-heading">{this.props.developer.username}</h4>
-                      		<p>{this.props.developer.name}</p>
+							<h4 className="media-heading">{developer.username}</h4>
+                      		<p>{developer.name}</p>
 						</div>
 					</div>
 				</div>
 				<div className="col-md-2 text-right">
 					<input type="number" qtd="1" min="1" max="200" size="3" placeholder="How many hours?" 
-					value={this.props.developer.quantity} 
+					value={developer.quantity} 
 					onChange={this.handleChange}
 					className="modern"/>
 					hours
 				</div>
 				<div className="col-md-2 text-center">
-					<p>${this.props.developer.price} /per hour</p>
+					<p>${developer.price} /per hour</p>
 				</div>
 				<div className="col-md-2">
 					<div className="media">
@@ -60,7 +55,7 @@ var CartItem = React.createClass({
 							onClick={this.handleClick} aria-hidden="true"></span>
 		                </div>
 						<div className="media-body">
-							<p>${(this.props.developer.price * this.props.developer.quantity)}</p>
+							<p>${(developer.price * developer.quantity)}</p>
 						</div>
 					</div>
 				</div>

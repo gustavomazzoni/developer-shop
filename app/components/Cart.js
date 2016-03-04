@@ -7,11 +7,11 @@ var Cart = React.createClass({
 
 		var self = this;
 
-		var items = this.props.developers.map(function(d) {
+		var items = this.props.developers.map(function(developer) {
 
-			// Passing the onClick callback of this Cart to each CartItem.
-			return <CartItem developer={d.developer} 
-						onClick={self.props.onClick} 
+			// Passing the events callback of this Cart to each CartItem.
+			return <CartItem key={developer._id} developer={developer} 
+						onRemove={self.props.onRemove} 
 						onChange={self.props.onChange} />
 		});
 
@@ -39,6 +39,15 @@ var Cart = React.createClass({
 							</div>
 							<div className="col-md-2">
 								<p><strong className="total">${this.props.total}</strong></p>
+							</div>
+			          	</div>
+			          	<div className="col-md-12 text-right">
+			          		<div className="col-md-8">
+							</div>
+							<div className="col-md-4">
+								<button type="button" 
+									className="btn btn-success btn-lg btn-block"
+									onClick={this.props.onSubmit}>Comprar</button>
 							</div>
 			          	</div>
 					</div>

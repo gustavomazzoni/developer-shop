@@ -7,11 +7,11 @@ var DeveloperList = React.createClass({
 
 		var self = this;
 
-		var developers = this.props.developers.map(function(d) {
+		var developers = this.props.developers.map(function(developer) {
 
-			// Passing the onClick callback of this DeveloperList to each DeveloperItem.
+			// Passing the onAdd callback of this DeveloperList to each DeveloperItem.
 
-			return <DeveloperItem developer={d.developer} onClick={self.props.onClick} />
+			return <DeveloperItem key={developer._id} developer={developer} onAdd={self.props.onAdd} />
 		});
 
 		if(!developers.length){

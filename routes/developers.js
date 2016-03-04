@@ -12,17 +12,17 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* GET /developers/id */
+router.get('/:id', function(req, res, next) {
+  Developer.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
 /* POST /developers */
 // router.post('/', function(req, res, next) {
 //   Developer.create(req.body, function (err, post) {
-//     if (err) return next(err);
-//     res.json(post);
-//   });
-// });
-
-/* GET /developers/id */
-// router.get('/:id', function(req, res, next) {
-//   Developer.findById(req.params.id, function (err, post) {
 //     if (err) return next(err);
 //     res.json(post);
 //   });

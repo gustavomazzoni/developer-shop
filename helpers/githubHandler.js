@@ -40,7 +40,7 @@ module.exports = function(github, org){
         }
         // Save user's name
         developer.name = res['name'];
-        developer.company =  res['company'];
+        developer.company = res['company'];
         // Save how many followers user has
         developer.followers_count = Number(res['followers']);
         // Save how many repos user has
