@@ -1,16 +1,16 @@
 //Setting server environment
 var server = {
 	protocol: "http",
-	hostname: "localhost",
-	port: 8080
+	hostname: "mazzoni-developer-shop.herokuapp.com",//"localhost",
+	port: 80//8080
 };
-if (process.env.NODE_ENV === 'production') {
-	server = {
-		protocol: "http",
-		hostname: "mazzoni-developer-shop.herokuapp.com",
-		port: 80
-	};
-}
+// if (process.env.NODE_ENV === 'production') {
+// 	server = {
+// 		protocol: "http",
+// 		hostname: 
+// 		port: 80
+// 	};
+// }
 
 module.exports = {
   database: process.env.MONGOLAB_URI || 'localhost/developer-shop',
