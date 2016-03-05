@@ -1,16 +1,14 @@
 //Setting server environment
-var server = {};
-if (process.env.NODE_ENV) {
+var server = {
+	protocol: "http",
+	hostname: "localhost",
+	port: 8080
+};
+if (process.env.NODE_ENV === 'production') {
 	server = {
 		protocol: "http",
 		hostname: "mazzoni-developer-shop.herokuapp.com",
 		port: 80
-	};
-} else {
-	server = {
-		protocol: "http",
-		hostname: "localhost",
-		port: 8080
 	};
 }
 
