@@ -1,3 +1,4 @@
+//Setting server environment
 var server = {};
 if (process.env.NODE_ENV) {
 	server = {
@@ -12,6 +13,7 @@ if (process.env.NODE_ENV) {
 		port: 8080
 	};
 }
+
 module.exports = {
   database: process.env.MONGOLAB_URI || 'localhost/developer-shop',
 
