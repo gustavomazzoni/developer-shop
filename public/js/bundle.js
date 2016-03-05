@@ -33807,16 +33807,26 @@
 /* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
 
+	var server = {};
+	if (process.env.NODE_ENV) {
+	  server = {
+	    protocol: "http",
+	    hostname: "mazzoni-developer-shop.herokuapp.com",
+	    port: 80
+	  };
+	} else {
+	  server = {
+	    protocol: "http",
+	    hostname: "localhost",
+	    port: 8080
+	  };
+	}
 	module.exports = {
 	  database: process.env.MONGOLAB_URI || 'localhost/developer-shop',
 
-	  server: {
-	    protocol: "http",
-	    hostname: 'localhost', //'http://mazzoni-developer-shop.herokuapp.com',
-	    port: 8080
-	  },
+	  server: server,
 
 	  // Using mikedeboer GitHub API for NodeJS (https://github.com/mikedeboer/node-github)
 	  github: {
