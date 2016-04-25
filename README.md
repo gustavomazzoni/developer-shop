@@ -1,21 +1,29 @@
 # Developer Shop
-## Goal
+## Objetivo
 
-Create a REST API that pulls the Apple App Store top lists from US and provides additional metadata information for each of the ids returned via Apple lookup API together with a simple aggregation functionality.
+Criar um carrinho de compras de uma loja que vende desenvolvedores baseado no exemplo fornecido.
+![Imgur](http://i.imgur.com/8NPz67T.png)
 
-## User Stories
+## Tarefas e priorização
 
-* As a user I want to provide category id and monetization(Free, Paid, Grossing) as an input value and receive top 200 apps ordered by rank position together with the metadata information as a json result (Metadata infor described in Apple Lookup API section)
-* As a user I want to input category id, monetization and rank position and receive app data for single application together with the metadata as json result
-* As a user I want to provide category id, monetization and receive top publishers rank by the amount of apps available in the top list as a json result. (publisher id, publisher name, rank, number of apps, app names in array)
-* As a user I want to be able to access the resources mentioned in points above via REST API
+Priorize a lista de tarefas abaixo explicando os motivos da priorização de cada uma delas. Então, escolha de três a seis tarefas para implementar.
 
-## Guidelines
-
-* Rspec to Test the application (Rspec)
-* Minimize the http request calls to api where possible
-* Consider as many possible inputs as possible and test for edge cases
-* Develop the application using the best software development practices Quality of the code is the key.
+* 1) Popular a lista de desenvolvedores a partir de uma organização do GitHub.
+    - Tarefa primordial e requisito primário para o funcionamento da aplicação.
+* 2) Determinar o preço do desenvolvedor a partir de informações do seu perfil do GitHub, como por exemplo: followers, repos, stars, commits, etc.
+    - Tarefa primordial e requisito primário para o funcionamento da aplicação.
+* 3) Substituir os inputs de texto por uma lista de desenvolvedores com nome, foto, preço e um botão de "Adicionar ao carrinho".
+    - Após concluídas as tarefas acima, a lista de desenvolvedores está pronta para ser apresentada ao usuário.
+* 4) Melhorar a visualização do desenvolvedor no carrinho mostrando mais informações.
+    - Seguindo a sequência de passos do usuário no fluxo principal (Adicionar o desenvolvedor ao carrinho de compras -> Visualizar o desenvolvedor no carrinho de compras), apresentar o carrinho de compras com informações relevantes do desenvolvedor.
+* 5) Permitir a escolha de quantidade de horas contratadas de cada desenvolvedor.
+    - Seguindo a sequência de passos do usuário no fluxo principal, é necessário possibilitar a escolha da quantidade de horas contratadas.
+* 6) Adicionar um botão de "comprar" que leva o usuário a uma página de pedido confirmado.
+    - Seguindo a sequência de passos do usuário no fluxo principal, é o botão de compra para finalizar o fluxo e confirmar a compra.
+* 7) Criar paginação para a lista de desenvolvedores.
+    - Tarefa do fluxo secundário, onde será util em casos de uma grande lista de desenvolvedores.
+* 8) Permitir a adição de um cupom de desconto que altera o preço total da compra. Utilize o código "SHIPIT".
+    - Tarefa do fluxo secundário, onde será utilizado somente quando o usuário possuir cupom de desconto.
 
 ## Solução
 
