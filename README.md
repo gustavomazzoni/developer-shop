@@ -1,60 +1,49 @@
 # Developer Shop
-## Objetivo
+## Goal
 
-Criar um carrinho de compras de uma loja que vende desenvolvedores baseado no exemplo fornecido.
+To build an e-commerce application where user can shop for developers, like the example below.
 ![Imgur](http://i.imgur.com/8NPz67T.png)
 
-## Tarefas e priorização
+## Requirements
 
-Priorize a lista de tarefas abaixo explicando os motivos da priorização de cada uma delas. Então, escolha de três a seis tarefas para implementar.
+* 1) Populate a list of developers from an organization in GitHub.
+* 2) Determine the price of the developer using information from his GitHub profile, such as: followers, repos, stars, commits, etc.
+* 3) Replace input text by a list of developers with name, photo, price and a button "Add to Cart".
+* 4) Improve developer preview in the cart showing more information.
+* 5) Allow user to choose the number of hours to contract of each developer.
+* 6) Add a button "buy" that takes user to order confirmed page.
+* 7) Create pagination to the list of developers.
+* 8) Allow adding coupon discount that changes the total price of the order. Use "SHIPIT" code.
 
-* 1) Popular a lista de desenvolvedores a partir de uma organização do GitHub.
-    - Tarefa primordial e requisito primário para o funcionamento da aplicação.
-* 2) Determinar o preço do desenvolvedor a partir de informações do seu perfil do GitHub, como por exemplo: followers, repos, stars, commits, etc.
-    - Tarefa primordial e requisito primário para o funcionamento da aplicação.
-* 3) Substituir os inputs de texto por uma lista de desenvolvedores com nome, foto, preço e um botão de "Adicionar ao carrinho".
-    - Após concluídas as tarefas acima, a lista de desenvolvedores está pronta para ser apresentada ao usuário.
-* 4) Melhorar a visualização do desenvolvedor no carrinho mostrando mais informações.
-    - Seguindo a sequência de passos do usuário no fluxo principal (Adicionar o desenvolvedor ao carrinho de compras -> Visualizar o desenvolvedor no carrinho de compras), apresentar o carrinho de compras com informações relevantes do desenvolvedor.
-* 5) Permitir a escolha de quantidade de horas contratadas de cada desenvolvedor.
-    - Seguindo a sequência de passos do usuário no fluxo principal, é necessário possibilitar a escolha da quantidade de horas contratadas.
-* 6) Adicionar um botão de "comprar" que leva o usuário a uma página de pedido confirmado.
-    - Seguindo a sequência de passos do usuário no fluxo principal, é o botão de compra para finalizar o fluxo e confirmar a compra.
-* 7) Criar paginação para a lista de desenvolvedores.
-    - Tarefa do fluxo secundário, onde será util em casos de uma grande lista de desenvolvedores.
-* 8) Permitir a adição de um cupom de desconto que altera o preço total da compra. Utilize o código "SHIPIT".
-    - Tarefa do fluxo secundário, onde será utilizado somente quando o usuário possuir cupom de desconto.
+## Solution
 
-## Solução
+For the solution, it was built a single page application using [React](https://facebook.github.io/react/), for the client side, consuming a RESTful API, developed in [Node](https://nodejs.org/), that gets and manipulates datas in [MongoDB](https://www.mongodb.org/) database.
 
-Para a solução, foi criado uma single page application em [React](https://facebook.github.io/react/) no "client side" chamando o "server side", desenvolvido em [Node](https://nodejs.org/), através de API REST por Ajax e guardando os dados no banco de dados [MongoDB](https://www.mongodb.org/).
+When the server side application is started, it loads a list of developers from an organization members in GitHub (current configured to get it from Pinterest organization), determines the price of each developer based on calculation of his GitHub profile information (where number of repos x 1, number of followers x 2, number of stars x 3 and number of forks x 3) and, finally, saves the list of developers in the database.
+This boot solution was adopted, because the list of members from an organization in GitHub has a low frequency of updates as well as the profile information from a member. Therefore, with this solution we can save network bandwidth and have a faster API response time.
 
-Ao iniciar o server side application, é carregada a lista de desenvolvedores a partir de membros de uma Organização do GitHub (neste caso a organização Pinterest), determinado o preço de cada desenvolvedor com cálculo baseado em informações do seu perfil (regra adotada: peso 1 para número de repos, peso 2 para número de followers e peso 3 para número de stars e forks recebidos em seus forks) e finalmente é salvo esta lista de desenvolvedores com seus respectivos preços no banco de dados. Desta forma, as chamadas ao GitHub são feitas uma única vez, desonerando a rede e o processamento do server.
+In the client side, when the React components are loaded a single request to the API is made to load the list of developers and then populate the view components with it. From now on, all operations are handled only in the client side, except when the user clicks Buy. The cart state is saved in the local storage (users browser) until user clicks Buy.
+This solution was adopted to have a better user experience and to save the server from unnecessary requests. And saving the cart state in the browser gives the user the opportunity to keep shopping from the place he stoped last time.
 
-No client side, ao carregar os componentes React é feita uma única chamada ao server para carregar a lista de desenvolvedores e popular os componentes da view. A partir deste momento, a maior parte das interações na tela são feitas no client side sem comunicação com o server (adicionar e remover desenvolvedor do carrinho, escolher quantidade de horas a ser contratada para cada desenvolvedor). Sendo assim, o estado do carrinho é guardado no client side, mais especificamente no local storage (browser do usuário).
 
-Esta solução foi adotada, pois a lista de membros de uma organização do github é alterada com baixa frequência, da mesma forma as informações do perfil de cada membro. Portanto, seria desnecessário uma solução mais pesada com comunicações frequêntes ao GitHub para carregar tais informações e processar o cálculo para determinar o preço de cada desenvolvedor.
-
-Foi optado por manter o estado do carrinho de compras no client side, pois o usuário não está logado no sistema sendo inviável guardar o carrinho do usuário para acessos em diferentes browsers. Desta forma, é mantido do lado do cliente novamente desonerando o servidor e fazendo com que a interação seja mais rápida.
-
-Módulo utilizados no client side:
+Modules required in client side:
 * React
 * React-DOM
 * Babel
 * Webpack
 
-Módulo utilizados no server side:
+Modules required in server side:
 * NodeJS
 * ExpressJS
 * MongoDB
 * Mongoose
 
-## Próximas versões
-* Criação de Testes automatizados.
-* Mover lógicas de negócio dos componentes React utilizando arquitetura [Flux](https://facebook.github.io/flux/docs/overview.html)
-* Criação de configuração para recarregar lista de membros do GitHub em determinada frequência e atualizar no banco de dados da aplicação.
+## Next versions
+* Unit test
+* Move business logic from React components using [Flux](https://facebook.github.io/flux/docs/overview.html) architecture.
+* Add operation to update the list of developers from GitHub to the database.
 
-## Executando a aplicação localmente
+## Running the app locally
 ### Install
 Install MongoDB
 ```sh
